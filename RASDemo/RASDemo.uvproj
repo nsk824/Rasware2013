@@ -411,11 +411,6 @@
               <FilePath>.\Main.c</FilePath>
             </File>
             <File>
-              <FileName>MotorDemo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\MotorDemo.c</FilePath>
-            </File>
-            <File>
               <FileName>ServoDemo.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\ServoDemo.c</FilePath>
