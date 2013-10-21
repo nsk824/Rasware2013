@@ -79,14 +79,15 @@ void LEDRainbow(tPWM **pins) {
  * Blinks the fukkan lights, what did you expect?
  * 
  * No parameters cause that would be stupid
+ * Return : int representing the ID of the LEDRainbow function passed to CallEvery (in case we want to turn it off)
  **/
-void LightShow(void) {
+int LightShow(void) {
 	  tPWM *Red;	
 		tPWM *Green;
 	  tPWM *Blue;
 	  tPWM *pins[3];  
 	
-		// initialize PWMs on each LED pin to fully on (white)
+		// initialize PWMs on each LED pin to fully on, 10000Hz (white)
 	  Red = InitializePWM(PIN_F1, 10000);
 	  SetPWM(Red, 1, 0);
 		Blue = InitializePWM(PIN_F2, 10000);
@@ -101,7 +102,7 @@ void LightShow(void) {
 	  pins[2] = Green;
    
 	 // Disco time, change float value at the end to change speed of lightshow
-   CallEvery(LEDRainbow, pins, 0.25f);
+   return CallEvery(LEDRainbow, pins, 0.25f);
 }
 
 
@@ -117,9 +118,11 @@ void initMotors(void) {
 
 
 int main(void) {  
+	  int lightshowID;
+	
     // fire up this bad boy  
     InitializeMCU();
-	  LightShow();
+	  lightshowID = LightShow();
     initMotors();
 	
 	  // full speed ahead
