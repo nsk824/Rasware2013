@@ -80,6 +80,7 @@ ${COMPILER}/main.axf: ${COMPILER}/EncoderDemo.o
 ${COMPILER}/main.axf: ${COMPILER}/IRSensorDemo.o
 ${COMPILER}/main.axf: ${COMPILER}/LineSensorDemo.o
 ${COMPILER}/main.axf: ${COMPILER}/ServoDemo.o
+${COMPILER}/main.axf: ${COMPILER}/MotorDemo.o
 ${COMPILER}/main.axf: ${COMPILER}/UARTDemo.o
 ${COMPILER}/main.axf: ${COMPILER}/startup.o
 

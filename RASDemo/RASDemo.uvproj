@@ -349,7 +349,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\;C:\;..\StellarisWare;C:\StellarisWare;inc</IncludePath>
+              <IncludePath>..\;..\..\;C:\;..\StellarisWare;..\..\StellarisWare;C:\StellarisWare;inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -409,6 +409,11 @@
               <FileName>Main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Main.c</FilePath>
+            </File>
+            <File>
+              <FileName>MotorDemo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\MotorDemo.c</FilePath>
             </File>
             <File>
               <FileName>ServoDemo.c</FileName>
