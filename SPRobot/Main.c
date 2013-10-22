@@ -6,6 +6,10 @@
 #include <RASLib/inc/motor.h>
 #include <RASLib/inc/linesensor.h>
 #include <RASLib/inc/i2c.h>
+#include <stdio.h>
+
+#define LEFT 0
+#define RIGHT 1
 
 int color = 1;
 tMotor *motors[2];
@@ -93,6 +97,9 @@ void InitializeBot(void) {
 
 
 int main(void) {  
+		float LSData[8]; // used to store linesensor data
+		char Proceed; // used to pause linesensor output during test
+		int i; // used for looping the linesensor test code
 		tPWM *Red;	
 		tPWM *Green;
 		tPWM *Blue;
@@ -115,14 +122,25 @@ int main(void) {
 	  pins[2] = Blue;
     
 		// Disco time, change float value at the end to change speed of lightshow
+		// Must use multithreading/pthreads to continue show while the robot runs
 		CallEvery(LEDRainbow, pins, 0.05f);
 		
 		// start the motors, as of right now cancels the light show :(
-		SetMotor(motors[0], 0.25);
-    SetMotor(motors[1], 0.35);
+		SetMotor(motors[LEFT], 0.25);
+    SetMotor(motors[RIGHT], 0.35);
 		
 		// This is where the magic happens
 		while(1) {
-
+			
+				/**** LineSensor test code, make sure you're connected with PUTTY! ****/
+				LineSensorReadArray(ls, LSData);
+				for(i = 0; i < 8; i++) {
+						printf("%f", LSData[i]);
+				}
+				printf("\n");
+				// wait until key pressed to print out next read
+				Proceed = Getc();
+				/**** end test code ****/
+				
 		}
 }
