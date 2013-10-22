@@ -1,11 +1,15 @@
+
 #include <RASLib/inc/common.h>
 #include <RASLib/inc/gpio.h>
 #include <RASLib/inc/time.h>
 #include <RASLib/inc/pwm.h>
 #include <RASLib/inc/motor.h>
+#include <RASLib/inc/linesensor.h>
+#include <RASLib/inc/i2c.h>
 
 int color = 1;
 tMotor *motors[2];
+tLineSensor *ls;
 
 /**
  * Taste the fuckin' rainbow.
@@ -74,56 +78,48 @@ void LEDRainbow(tPWM **pins) {
 
 
 /**
- * Blinks the fukkan lights, what did you expect?
- * 
- * No parameters cause that would be stupid
- * Return : int representing the ID of the LEDRainbow function passed to CallEvery (in case we want to turn it off)
- **/
-int LightShow(void) {
-	  tPWM *Red;	
-		tPWM *Green;
-	  tPWM *Blue;
-	  tPWM *pins[3];  
-	
-		// initialize PWMs on each LED pin to fully on, 10000Hz (white)
-	  Red = InitializePWM(PIN_F1, 10000);
-	  SetPWM(Red, 1, 0);
-		Blue = InitializePWM(PIN_F2, 10000);
-    SetPWM(Blue, 1, 0);
-		Green = InitializePWM(PIN_F3, 10000);
-    SetPWM(Green, 1, 0);
-	
-	  // put PWMs in an array so they can be passed by CallEvery
-	  // (CallEvery can only pass one parameter to a function!)
-	  pins[0] = Red;
-	  pins[1] = Blue;
-	  pins[2] = Green;
-   
-	 // Disco time, change float value at the end to change speed of lightshow
-   return CallEvery(LEDRainbow, pins, 0.25f);
-}
-
-
-/**
  * Initialize the motors, pretty self-explanitory
  *
  * ... unless you're dumb :3
  **/
-void initMotors(void) {
+void StartRobot(void) {
+		// initialize line sensor
+		tI2C *bus = InitializeI2C(PIN_B3, PIN_B2);
+		ls = InitializeLineSensor(bus, 0);
+		// initialize motors
     motors[0] = InitializeMotor(PIN_C5, PIN_C4, true, false);
     motors[1] = InitializeMotor(PIN_B7, PIN_B6, true, false);
 }
 
 
 int main(void) {  
-	  int lightshowID;
+		tPWM *Red;	
+		tPWM *Green;
+		tPWM *Blue;
+		tPWM *pins[3]; 
 	
     // fire up this bad boy  
     InitializeMCU();
-	  lightshowID = LightShow();
-    initMotors();
 	
-	  // full speed ahead
-	  SetMotor(motors[0], 0.25 );
+	  Red = InitializePWM(PIN_F1, 50000);
+	  SetPWM(Red, 1, 0);
+		Blue = InitializePWM(PIN_F2, 50000);
+    SetPWM(Blue, 1, 0);
+		Green = InitializePWM(PIN_F3, 50000);
+    SetPWM(Green, 1, 0);
+	
+	  pins[0] = Red;
+	  pins[1] = Green;
+	  pins[2] = Blue;
+    
+		// Disco time, change float value at the end to change speed of lightshow
+		CallEvery(LEDRainbow, pins, 0.05f);
+		
+		StartRobot();
+		SetMotor(motors[0], 0.25);
     SetMotor(motors[1], 0.35);
+		
+		while(1) {
+
+		}
 }
