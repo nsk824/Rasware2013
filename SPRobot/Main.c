@@ -78,11 +78,11 @@ void LEDRainbow(tPWM **pins) {
 
 
 /**
- * Initialize the motors, pretty self-explanitory
+ * Initialize the motors and sensors, pretty self-explanitory
  *
  * ... unless you're dumb :3
  **/
-void StartRobot(void) {
+void InitializeBot(void) {
 		// initialize line sensor
 		tI2C *bus = InitializeI2C(PIN_B3, PIN_B2);
 		ls = InitializeLineSensor(bus, 0);
@@ -100,7 +100,9 @@ int main(void) {
 	
     // fire up this bad boy  
     InitializeMCU();
+		InitializeBot();
 	
+		// Initialize RGB pins for the lightshow, put them in an array
 	  Red = InitializePWM(PIN_F1, 50000);
 	  SetPWM(Red, 1, 0);
 		Blue = InitializePWM(PIN_F2, 50000);
@@ -115,10 +117,11 @@ int main(void) {
 		// Disco time, change float value at the end to change speed of lightshow
 		CallEvery(LEDRainbow, pins, 0.05f);
 		
-		StartRobot();
+		// start the motors, as of right now cancels the light show :(
 		SetMotor(motors[0], 0.25);
     SetMotor(motors[1], 0.35);
 		
+		// This is where the magic happens
 		while(1) {
 
 		}
