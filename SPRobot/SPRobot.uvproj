@@ -400,6 +400,11 @@
               <FileType>2</FileType>
               <FilePath>.\Startup.s</FilePath>
             </File>
+            <File>
+              <FileName>Lightshow.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lightshow.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
