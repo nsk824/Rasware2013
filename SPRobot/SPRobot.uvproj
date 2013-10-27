@@ -405,6 +405,11 @@
               <FileType>1</FileType>
               <FilePath>.\Lightshow.c</FilePath>
             </File>
+            <File>
+              <FileName>LineSensor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\LineSensor.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

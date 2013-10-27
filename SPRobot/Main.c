@@ -27,15 +27,13 @@ void InitializeBot() {
 
 
 int main(void) {  
-	float LSData[8]; // used to store linesensor data
-	char Proceed; // used to pause linesensor output during test
-	int i; // used for looping the linesensor test code
-	
 	// fire up this bad boy  
 	InitializeMCU();
 	
 	InitializeLightshow();
 	RunLightshow();
+	
+	InitializeBot();
 		
 	// start the motors, as of right now cancels the light show :(
 	//SetMotor(motors[LEFT], 0.25);
@@ -44,15 +42,7 @@ int main(void) {
 	// This is where the magic happens
 	while(1) {
 			
-		/**** LineSensor test code, make sure you're connected with PUTTY! ****
-		LineSensorReadArray(ls, LSData);
-		for(i = 0; i < 8; i++) {
-				printf("%f", LSData[i]);
-		}
-		printf("\n");
-		// wait until key pressed to print out next read
-		//Proceed = Getc();
-		**** end test code ****/
+		//LSTest(ls);
 			
 	}
 }
