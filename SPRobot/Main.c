@@ -36,6 +36,7 @@ int main(void) {
 	InitializeBot();
 		
 	// start the motors, as of right now cancels the light show :(
+                // Need Threads to run together
 	//SetMotor(motors[LEFT], 0.25);
 	//SetMotor(motors[RIGHT], 0.35);
 		
