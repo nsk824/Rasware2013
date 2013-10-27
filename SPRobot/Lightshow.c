@@ -1,5 +1,3 @@
-#include <RASLib/inc/common.h>
-#include <RASLib/inc/gpio.h>
 #include <RASLib/inc/time.h>
 #include <RASLib/inc/pwm.h>
 
@@ -9,7 +7,7 @@ tPWM *RGB[3];
 /**
  * Taste the fuckin' rainbow.
  *
- * @param tPWM **pins : an array of 3 PWMs representing each color pin
+ * @param tPWM **RGB : an array of 3 PWMs representing each color pin
  **/
 void LEDRainbow(tPWM **RGB) {
 	switch(color) {
@@ -87,10 +85,9 @@ void InitializeLightshow() {
 
 
 /**
- * Does what you would expect (or does it?)
+ * Disco time
+ * note: must use multithreading/pthreads to continue show while the robot runs
  */
 void RunLightshow() {
-	// Disco time, change float value at the end to change speed of lightshow
-	// Must use multithreading/pthreads to continue show while the robot runs
 	CallEvery(LEDRainbow, RGB, 0.05f);
 }
