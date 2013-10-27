@@ -1,6 +1,5 @@
 #include <RASLib/inc/motor.h>
 #include <RASLib/inc/linesensor.h>
-#include <windows.h>
 #include "SPRobot.h"
 
 #define LEFT 1
