@@ -5,6 +5,10 @@
 #define LEFT 1
 #define RIGHT 0
 
+float leftSpeed;
+float rightSpeed;
+int Mailbox;
+
 /**
  * Initialize the motors and sensors, pretty self-explanitory
  *
@@ -17,6 +21,8 @@ void InitializeBot() {
 	// initialize motors
 	motors[LEFT] = InitializeMotor(PIN_C5, PIN_C4, true, false);
 	motors[RIGHT] = InitializeMotor(PIN_B7, PIN_B6, true, false);
+	// initialize IR sensors
+	initIRSensor();
 }
 
 
@@ -37,9 +43,18 @@ int main(void) {
     // Need Threads to run together
 	//SetMotor(motors[LEFT], 0.25);
 	//SetMotor(motors[RIGHT], 0.35);
+	
+	Mailbox = 0;
 		
 	// This is where the magic happens
 	while(1) {
 		LSTest(ls);	
+		follow_wall();
+		if (Mailbox == 1){
+			SetMotor(motors[LEFT], leftSpeed);
+		}
+		else if (Mailbox == 2){
+			SetMotor(motors[RIGHT], rightSpeed);
+		}
 	}
 }
