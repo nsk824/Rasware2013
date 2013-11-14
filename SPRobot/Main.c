@@ -5,16 +5,17 @@
 #define LEFT 1
 #define RIGHT 0
 
+/*
 float leftSpeed;
 float rightSpeed;
 int Mailbox;
-
+*/
 /**
  * Initialize the motors and sensors, pretty self-explanitory
  *
  * ... unless you're dumb :3
  **/
-void InitializeBot() {
+void InitializeBot(void) {
 	// initialize line sensor
 	tI2C *bus = InitializeI2C(PIN_B3, PIN_B2);
 	ls = InitializeLineSensor(bus, 0);
@@ -22,11 +23,11 @@ void InitializeBot() {
 	motors[LEFT] = InitializeMotor(PIN_C5, PIN_C4, true, false);
 	motors[RIGHT] = InitializeMotor(PIN_B7, PIN_B6, true, false);
 	// initialize IR sensors
-	initIRSensor();
+	//initIRSensor();
 }
 
 
-int main(void) {  
+int main(void){  
 	// fire up this bad boy  
 	InitializeMCU();
 	
@@ -44,17 +45,19 @@ int main(void) {
 	//SetMotor(motors[LEFT], 0.25);
 	//SetMotor(motors[RIGHT], 0.35);
 	
-	Mailbox = 0;
+//	Mailbox = 0;
 		
 	// This is where the magic happens
 	while(1) {
 		LSTest(ls);	
-		follow_wall();
+/*
+  	follow_wall();
 		if (Mailbox == 1){
 			SetMotor(motors[LEFT], leftSpeed);
 		}
-		else if (Mailbox == 2){
+	  else if (Mailbox == 2){
 			SetMotor(motors[RIGHT], rightSpeed);
 		}
+*/
 	}
 }

@@ -61,6 +61,7 @@ void follow_wall(void) {
 //			  SetMotor(motors[LEFT], 0.10);
 	//			SetMotor(motors[RIGHT], 0.35);
     }
+		Printf("ADC Value: " + (int)ADCValue);
 		
     old_ADCValue = ADCValue;
 }

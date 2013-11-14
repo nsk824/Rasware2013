@@ -14,6 +14,6 @@ void RunLightshow(void);
 
 void LSTest(tLineSensor *ls);
 
-void initIRSensor(void);
+//void initIRSensor(void);
 
-void follow_wall(void);
+//void follow_wall(void);
